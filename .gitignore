@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.next/
+out/
+coverage/
+data/
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.log
+.DS_Store
+*.tsbuildinfo
