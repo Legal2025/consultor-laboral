@@ -10,6 +10,7 @@ import { EstadoConexion } from "./EstadoConexion";
 export function rutaModulo(m: Modulo): string {
   if (m.slug === "expedientes") return "/expedientes/";
   if (m.slug === "configuracion") return "/configuracion/";
+  if (m.slug === "calculadora") return "/calculadora/";
   return `/modulos/${m.slug}/`;
 }
 

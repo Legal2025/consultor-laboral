@@ -14,6 +14,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@cl/calc':
+        specifier: workspace:*
+        version: link:../../packages/calc
       '@cl/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -40,6 +43,22 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
+  packages/calc:
+    dependencies:
+      decimal.js:
+        specifier: 10.6.0
+        version: 10.6.0
+      zod:
+        specifier: 4.6.7
+        version: 4.6.7
+    devDependencies:
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+      vitest:
+        specifier: 5.1.0
+        version: 5.1.0(@types/node@22.20.5)(vite@8.3.5(@types/node@22.20.5)(esbuild@0.28.2)(tsx@4.23.15))
+
   packages/shared:
     dependencies:
       zod:
@@ -55,6 +74,9 @@ importers:
 
   services/api:
     dependencies:
+      '@cl/calc':
+        specifier: workspace:*
+        version: link:../../packages/calc
       '@cl/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -845,6 +867,9 @@ packages:
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
+
+  decimal.js@10.6.0:
+    resolution: {integrity: sha512-YpgQiITW3JXGntzdUmyUR1V812Hn8T1YVXhCu+wO3OpS4eU9l4YdD3qjyiKdV6mvV29zapkMeD390UVEf2lkUg==}
 
   dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
@@ -1942,6 +1967,8 @@ snapshots:
   cookie@2.0.1: {}
 
   csstype@3.2.3: {}
+
+  decimal.js@10.6.0: {}
 
   dequal@2.0.3: {}
 

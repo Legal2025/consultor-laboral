@@ -5,6 +5,7 @@ import type { Configuracion } from "./configuracion";
 import { rutasAutenticacion } from "./autenticacion";
 import { rutasExpedientes } from "./expedientes";
 import { rutasSalud } from "./salud";
+import { rutasCalculos } from "./calculos";
 
 export async function crearAplicacion(bd: BaseDatos, config: Configuracion, registro = false): Promise<FastifyInstance> {
   const app = Fastify({
@@ -31,6 +32,7 @@ export async function crearAplicacion(bd: BaseDatos, config: Configuracion, regi
   rutasSalud(app, bd, config);
   const exigirSesion = rutasAutenticacion(app, bd, config.duracionSesionDias);
   rutasExpedientes(app, bd, exigirSesion);
+  rutasCalculos(app, bd, exigirSesion);
 
   app.setErrorHandler((error: { statusCode?: number; message?: string }, _req, rep) => {
     app.log.error(error);

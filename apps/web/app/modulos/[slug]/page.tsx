@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { MODULOS, moduloPorSlug } from "@cl/shared";
 import { VistaModulo } from "./VistaModulo";
 
-const PROPIOS = new Set(["expedientes", "configuracion"]);
+const PROPIOS = new Set(["expedientes", "configuracion", "calculadora"]);
 
 export function generateStaticParams() {
   return MODULOS.filter((m) => !PROPIOS.has(m.slug)).map((m) => ({ slug: m.slug }));

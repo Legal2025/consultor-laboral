@@ -7,5 +7,5 @@ export default defineConfig({
   outDir: "dist",
   clean: true,
   // @cl/shared se distribuye como fuente TypeScript: se incluye en el paquete compilado.
-  noExternal: ["@cl/shared"],
+  noExternal: ["@cl/shared", "@cl/calc"],
 });
