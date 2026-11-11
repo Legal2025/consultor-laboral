@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-Última actualización: 2026-11-03.
+Última actualización: 2026-11-11.
 
 ## Fase 0 — Fundaciones (esta entrega)
 
@@ -15,11 +15,36 @@ Implementado y probado:
 
 Pruebas automatizadas: 4 en `packages/shared`, 10 en `services/api` (salud, autenticación, sesiones, versiones, conflictos, aislamiento entre usuarios, papelera).
 
+## Fase 1 — Motor de cálculo (primera entrega: liquidación)
+
+Implementado y probado (`packages/calc`, 28 pruebas):
+
+- Antigüedad por calendario (ingreso y último día inclusive, sin días negativos en fin de mes).
+- Preaviso (art. 28 CT) y cesantía (art. 29 CT, tabla y tope de ocho años) con base en el promedio de los últimos seis meses (art. 30 CT).
+- Aguinaldo proporcional del 1 de diciembre a la terminación; vacaciones por saldo de días.
+- Procedencia por modalidad de salida, sin asignar rubros por la sola etiqueta: pensión y mutuo acuerdo quedan «condicionados» y fuera del total procedente.
+- Imputación de cada pago solo a su rubro; abonos sin imputar no se rebajan; pagos discutidos y modalidad controvertida generan escenarios.
+- Clasificación del informe: cálculo completo, estimación provisional o escenario sujeto a decisión jurídica.
+- API: `POST /calculos/liquidacion` y `GET /expedientes/:id/calculos` (cada recálculo se conserva con la versión del motor).
+- Web: pantalla de calculadora que calcula en el dispositivo (funciona sin conexión), exporta CSV con fórmulas y guarda en expedientes.
+
+### Verificación de normas
+
+| Regla | Estado | Fuente consultada |
+| --- | --- | --- |
+| CT arts. 28, 29, 30, 31 | Verificada (2026-11-11) | Texto del Código publicado por el MTSS (incluye Ley 9343) |
+| CT art. 83, art. 85 | Pendiente | SCIJ no permitió lectura automatizada; el PDF del MTSS legible llega hasta el art. 76 |
+| CT arts. 153, 156, 157 (vacaciones) | Pendiente | Ídem |
+| Ley 2412 (aguinaldo) | Pendiente | No se localizó texto oficial legible |
+| Divisor 30, fracción de cesantía, vacaciones 1 día/mes | Criterio de cómputo configurable | — |
+
+Mientras haya reglas pendientes, ningún informe se clasifica como «cálculo con datos completos».
+
 ## Pendiente
 
 | Fase | Pendiente | Depende de |
 | --- | --- | --- |
-| 1 | Motor de cálculo laboral con trazabilidad por rubro | — |
+| 1 | Horas extra, feriados y descansos, diferencias salariales, art. 31 (plazo fijo); verificación de reglas pendientes | Texto oficial de los artículos pendientes |
 | 2 | Catálogo versionado de salarios mínimos y perfiles ocupacionales | Acceso a publicaciones del MTSS |
 | 3 | IA, motor de investigación, asistente, robot rápido, leyes, jurisprudencia, doctrina, seguridad privada | Clave de API de IA (decisión pendiente) |
 | 4 | Análisis documental con OCR y redactor | — |

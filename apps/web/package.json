@@ -10,6 +10,7 @@
     "test": "echo \"Sin pruebas de interfaz en la Fase 0\""
   },
   "dependencies": {
+    "@cl/calc": "workspace:*",
     "@cl/shared": "workspace:*",
     "next": "16.4.4",
     "react": "19.3.1",

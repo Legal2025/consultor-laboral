@@ -160,3 +160,12 @@ label { display: block; font-weight: 600; margin: 1rem 0 0.3rem; }
   .contenido { padding: 1rem 16px; }
   .estado-conexion { font-size: 0.75rem; }
 }
+
+/* Tablas */
+.tabla-scroll { overflow-x: auto; margin: 0.75rem 0; }
+.tabla { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+.tabla th, .tabla td { border-bottom: 1px solid var(--borde); padding: 0.45rem 0.5rem; text-align: left; vertical-align: top; }
+.tabla th { font-weight: 600; color: var(--texto-suave); white-space: nowrap; }
+.tabla td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tabla input, .tabla select { min-width: 120px; }
+h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }

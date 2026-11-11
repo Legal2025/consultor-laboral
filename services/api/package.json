@@ -11,6 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@cl/calc": "workspace:*",
     "@cl/shared": "workspace:*",
     "@electric-sql/pglite": "0.5.14",
     "@fastify/cors": "11.4.0",

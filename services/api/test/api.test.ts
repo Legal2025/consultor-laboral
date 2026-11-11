@@ -148,3 +148,40 @@ describe("expedientes", () => {
     expect(restaurado.json().eliminadoEn).toBeNull();
   });
 });
+
+describe("cálculos", () => {
+  const datos = {
+    fechaIngreso: "2025-01-06",
+    fechaTerminacion: "2026-07-31",
+    modalidad: "despido_con_responsabilidad",
+    salarios: ["2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07"].map((periodo) => ({ periodo, monto: "450000" })),
+  };
+
+  it("calcula sin guardar y valida los datos", async () => {
+    const t = await registrar("calc@ejemplo.cr");
+    const ok = await app.inject({ method: "POST", url: "/calculos/liquidacion", headers: auth(t), payload: { datos } });
+    expect(ok.statusCode).toBe(200);
+    expect(ok.json().informe.titulo).toBe("Informe de cálculo laboral");
+    expect(ok.json().guardado).toBeNull();
+    const malo = await app.inject({ method: "POST", url: "/calculos/liquidacion", headers: auth(t), payload: { datos: { ...datos, salarios: [] } } });
+    expect(malo.statusCode).toBe(400);
+  });
+
+  it("guarda cada cálculo en el expediente sin sobrescribir los anteriores", async () => {
+    const t = await registrar("calc2@ejemplo.cr");
+    const exp = (await app.inject({ method: "POST", url: "/expedientes", headers: auth(t), payload: { titulo: "Liquidación" } })).json();
+    for (const monto of ["450000", "500000"]) {
+      const r = await app.inject({
+        method: "POST",
+        url: "/calculos/liquidacion",
+        headers: auth(t),
+        payload: { expedienteId: exp.id, guardar: true, datos: { ...datos, salarios: datos.salarios.map((s) => ({ ...s, monto })) } },
+      });
+      expect(r.json().guardado.versionMotor).toBe("liquidacion-1.0.0");
+    }
+    const lista = (await app.inject({ method: "GET", url: `/expedientes/${exp.id}/calculos`, headers: auth(t) })).json();
+    expect(lista).toHaveLength(2);
+    const otro = await registrar("calc3@ejemplo.cr");
+    expect((await app.inject({ method: "GET", url: `/expedientes/${exp.id}/calculos`, headers: auth(otro) })).statusCode).toBe(404);
+  });
+});

@@ -20,7 +20,7 @@ export const MODULOS: readonly Modulo[] = [
   { slug: "leyes", numero: 3, titulo: "Leyes y SCIJ", descripcion: "Normativa oficial, versiones históricas, reformas y vigencia.", fase: 3, estado: "en_construccion" },
   { slug: "jurisprudencia", numero: 4, titulo: "Jurisprudencia y criterios del MTSS", descripcion: "Resoluciones de la Sala Segunda y Sala Constitucional; criterios administrativos del MTSS.", fase: 3, estado: "en_construccion" },
   { slug: "doctrina", numero: 5, titulo: "Doctrina nacional e internacional", descripcion: "Biblioteca doctrinal por temas, con distinción entre bibliografía localizada y leída.", fase: 3, estado: "en_construccion" },
-  { slug: "calculadora", numero: 6, titulo: "Calculadora laboral y salarios mínimos", descripcion: "Liquidaciones, extras, diferencias y escenarios con fórmula por rubro.", fase: 1, estado: "en_construccion" },
+  { slug: "calculadora", numero: 6, titulo: "Calculadora laboral y salarios mínimos", descripcion: "Liquidación por modalidad de salida con fórmula por rubro y escenarios. Extras, feriados, diferencias y mínimos: en construcción.", fase: 1, estado: "operativo" },
   { slug: "seguridad-privada", numero: 7, titulo: "Seguridad privada", descripcion: "Habilitaciones, acreditaciones, operación, disciplina y régimen laboral del sector.", fase: 3, estado: "en_construccion" },
   { slug: "documentos", numero: 8, titulo: "Análisis de documentos", descripcion: "Informe de análisis documental asistido por IA, con OCR y revisión de datos extraídos.", fase: 4, estado: "en_construccion" },
   { slug: "redactor", numero: 9, titulo: "Redactor de documentos jurídicos", descripcion: "Borradores individualizados con control de datos esenciales faltantes.", fase: 4, estado: "en_construccion" },
